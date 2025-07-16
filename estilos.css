@@ -1,0 +1,41 @@
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #fff0f5;
+  color: #333;
+  margin: 40px;
+}
+h1 {
+  text-align: center;
+  color: #c71585;
+}
+#malla-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.anio {
+  font-size: 1.4em;
+  font-weight: bold;
+  color: #c71585;
+  margin-top: 20px;
+}
+.semestre {
+  margin-left: 20px;
+}
+.ramo {
+  background-color: #ffc0cb;
+  border: 2px solid #c71585;
+  padding: 10px;
+  border-radius: 8px;
+  margin: 5px 0;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.ramo:hover {
+  background-color: #fda7b4;
+}
+.ramo.aprobado {
+  background-color: #90ee90;
+  border-color: #2e8b57;
+}
