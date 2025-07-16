@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ingeniería Civil Industrial - U. de Chile</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f8f9fa;
+      margin: 40px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .year-label {
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 30px;
+    }
+    .semester {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+    .course {
+      padding: 10px;
+      border-radius: 8px;
+      background: #ffffff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      border-left: 5px solid #007bff;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .course.active {
+      border-color: #28a745;
+      background: #e9f7ef;
+    }
+  </style>
+</head>
+<body>
+  <h1>Ingeniería Civil Industrial – Universidad de Chile</h1>
+
+  <div class="year-label">Primer Año</div>
+  <div class="semester">
+    <div class="course" data-code="MA1001">MA1001 – Introducción al Cálculo</div>
+    <div class="course" data-code="MA1101">MA1101 – Introducción al Álgebra</div>
+    <div class="course" data-code="FI1000">FI1000 – Introducción a la Física Clásica</div>
+    <div class="course" data-code="CC1000">CC1000 – Herramientas Computacionales</div>
+    <div class="course" data-code="CD1100">CD1100 – Desafíos de Innovación</div>
+    <div class="course" data-code="BT1211">BT1211 – Aplicaciones de la Biología</div>
+  </div>
+  <div class="semester">
+    <div class="course" data-code="MA1002">MA1002 – Cálculo Diferencial e Integral</div>
+    <div class="course" data-code="MA1102">MA1102 – Álgebra Lineal</div>
+    <div class="course" data-code="FI1100">FI1100 – Física Moderna</div>
+    <div class="course" data-code="CC1002">CC1002 – Introducción a la Programación</div>
+    <div class="course" data-code="CD1201">CD1201 – Proyecto de Innovación</div>
+    <div class="course" data-code="FG1">Curso Formación General</div>
+  </div>
+
+  <script>
+    const requisitos = {
+      'MA1002': ['MA1001'],
+      'MA1102': ['MA1101'],
+      'FI1100': ['FI1000'],
+      'CD1201': ['CD1100'],
+      'CC1002': ['CC1000']
+    };
+
+    const allCourses = document.querySelectorAll('.course');
+
+    allCourses.forEach(course => {
+      course.addEventListener('click', () => {
+        allCourses.forEach(c => c.classList.remove('active'));
+
+        const code = course.dataset.code;
+        const openCourses = Object.entries(requisitos)
+          .filter(([k, v]) => v.includes(code))
+          .map(([k]) => k);
+
+        course.classList.add('active');
+
+        allCourses.forEach(c => {
+          if (openCourses.includes(c.dataset.code)) {
+            c.classList.add('active');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
